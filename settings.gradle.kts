@@ -15,4 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Modules"
 include(":app")
- 
+include(":features:home")
+include(":features:orders")
+include(":features:profile")
