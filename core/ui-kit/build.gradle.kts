@@ -1,23 +1,18 @@
+@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
-    namespace = "com.rodrigolmti.modules"
+    namespace = "com.rodrigolmti.modules.ui_kit"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.rodrigolmti.modules"
         minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -52,12 +47,6 @@ android {
 dependencies {
     implementation(libs.androidx.core)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-
-    implementation(project(":core:ui-kit"))
-
-    implementation(project(":features:home"))
-    implementation(project(":features:orders"))
-    implementation(project(":features:profile"))
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
