@@ -1,4 +1,4 @@
-package com.rodrigolmti.modulesi.ui_kit
+package com.rodrigolmti.modules.ui_kit
 
 import androidx.compose.ui.graphics.Color
 
