@@ -32,6 +32,7 @@ android {
 
 dependencies {
     implementation(project(":core:ui-kit"))
+    implementation(project(":core:navigation"))
 
     implementation(project(":features:home"))
     implementation(project(":features:orders"))

@@ -13,6 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.rodrigolmti.modules.ui_kit.Purple80
+
 @Composable
 fun OrdersScreen() {
     Column(

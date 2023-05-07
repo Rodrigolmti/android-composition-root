@@ -24,6 +24,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
 
             dependencies {
 
+
             }
         }
     }

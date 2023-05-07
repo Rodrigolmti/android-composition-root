@@ -15,13 +15,15 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.rodrigolmti.modules.home.ui.BottomNavItem
+import com.rodrigolmti.modules.bottom_navigation.HomeNavItem
+import com.rodrigolmti.modules.bottom_navigation.OrdersNavItem
+import com.rodrigolmti.modules.bottom_navigation.ProfileNavItem
 import com.rodrigolmti.modules.home.ui.CustomBottomNavigation
 import com.rodrigolmti.modules.home.ui.HomeScreen
+import com.rodrigolmti.modules.navigation.BottomNavItem
 import com.rodrigolmti.modules.orders.OrdersScreen
 import com.rodrigolmti.modules.profile.ProfileScreen
 import com.rodrigolmti.modules.ui_kit.ComposeTheme
-import com.rodrigolmti.modules.ui_kit.R
 
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -58,24 +60,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
-
-class HomeNavItem : BottomNavItem {
-    override val screenRoute: String = "home"
-    override val icon: Int = R.drawable.ic_home
-    override val title: String = "Home"
-}
-
-class OrdersNavItem : BottomNavItem {
-    override val screenRoute: String = "orders"
-    override val icon: Int = R.drawable.ic_order
-    override val title: String = "Orders"
-}
-
-class ProfileNavItem : BottomNavItem {
-    override val screenRoute: String = "profile"
-    override val icon: Int = R.drawable.ic_profile
-    override val title: String = "Profile"
 }
 
 @Composable

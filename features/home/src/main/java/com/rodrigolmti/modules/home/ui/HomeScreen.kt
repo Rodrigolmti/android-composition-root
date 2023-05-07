@@ -19,13 +19,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.rodrigolmti.modules.navigation.BottomNavItem
 import com.rodrigolmti.modules.ui_kit.Purple80
-
-interface BottomNavItem {
-    val screenRoute: String
-    val icon: Int
-    val title: String
-}
 
 @Composable
 fun HomeScreen() {
