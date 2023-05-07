@@ -1,6 +1,5 @@
 package com.rodrigolmti.modules.orders
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
@@ -12,14 +11,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
-import com.rodrigolmti.modules.ui_kit.Purple80
 
 @Composable
 fun OrdersScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Purple80)
             .wrapContentSize(Alignment.Center)
     ) {
         Text(

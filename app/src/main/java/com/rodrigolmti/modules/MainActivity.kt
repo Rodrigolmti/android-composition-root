@@ -23,14 +23,14 @@ import com.rodrigolmti.modules.home.ui.HomeScreen
 import com.rodrigolmti.modules.navigation.BottomNavItem
 import com.rodrigolmti.modules.orders.OrdersScreen
 import com.rodrigolmti.modules.profile.ProfileScreen
-import com.rodrigolmti.modules.ui_kit.ComposeTheme
+import com.rodrigolmti.modules.ui_kit.AppTheme
 
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ComposeTheme {
+            AppTheme {
 
                 val bottomNavigationItems = listOf(
                     HomeNavItem(),

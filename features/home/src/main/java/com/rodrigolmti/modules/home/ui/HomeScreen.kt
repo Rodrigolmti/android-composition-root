@@ -1,6 +1,5 @@
 package com.rodrigolmti.modules.home.ui
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
@@ -20,14 +19,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.rodrigolmti.modules.navigation.BottomNavItem
-import com.rodrigolmti.modules.ui_kit.Purple80
+import com.rodrigolmti.modules.ui_kit.Blue40
 
 @Composable
 fun HomeScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Purple80)
             .wrapContentSize(Alignment.Center)
     ) {
         Text(
@@ -47,7 +45,7 @@ fun CustomBottomNavigation(
     destinations: List<BottomNavItem> = emptyList()
 ) {
     BottomNavigation(
-        backgroundColor = Purple80,
+        backgroundColor = Blue40,
         contentColor = Color.Black
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
