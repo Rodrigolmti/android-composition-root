@@ -1,5 +1,7 @@
 plugins {
     id("rodrigolmti.android.application")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.androidx.baselineprofile)
 }
 
 android {
@@ -40,6 +42,8 @@ dependencies {
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
+    implementation(libs.profileinstaller)
+    "baselineProfile"(project(mapOf("path" to ":baselineprofile")))
 
     debugImplementation(libs.bundles.compose.debug)
 }

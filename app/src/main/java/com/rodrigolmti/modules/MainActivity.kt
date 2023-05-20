@@ -29,6 +29,7 @@ class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             AppTheme {
 
@@ -59,6 +60,8 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+        reportFullyDrawn()
     }
 }
 
