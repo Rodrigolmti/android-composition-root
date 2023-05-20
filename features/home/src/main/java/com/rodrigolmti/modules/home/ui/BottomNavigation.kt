@@ -1,66 +1,18 @@
 package com.rodrigolmti.modules.home.ui
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.rodrigolmti.modules.home.domain.use_cases.GetDrinksUseCase
 import com.rodrigolmti.modules.navigation.BottomNavItem
 import com.rodrigolmti.modules.ui_kit.Blue40
-import kotlinx.coroutines.launch
-import org.koin.androidx.compose.koinViewModel
-
-class HomeViewModel(
-    private val getDrinksUseCase: GetDrinksUseCase
-) : ViewModel() {
-
-    init {
-        viewModelScope.launch {
-
-            getDrinksUseCase().fold({
-
-            },{
-
-            })
-        }
-    }
-}
-
-@Composable
-fun HomeScreen(
-    viewModel: HomeViewModel = koinViewModel<HomeViewModel>()
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .wrapContentSize(Alignment.Center)
-    ) {
-        Text(
-            text = "Home Screen",
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
-        )
-    }
-}
 
 @Composable
 fun CustomBottomNavigation(

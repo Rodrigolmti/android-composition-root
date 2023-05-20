@@ -19,7 +19,7 @@ import com.rodrigolmti.modules.bottom_navigation.HomeNavItem
 import com.rodrigolmti.modules.bottom_navigation.OrdersNavItem
 import com.rodrigolmti.modules.bottom_navigation.ProfileNavItem
 import com.rodrigolmti.modules.home.ui.CustomBottomNavigation
-import com.rodrigolmti.modules.home.ui.HomeScreen
+import com.rodrigolmti.modules.home.ui.home.HomeScreen
 import com.rodrigolmti.modules.navigation.BottomNavItem
 import com.rodrigolmti.modules.orders.OrdersScreen
 import com.rodrigolmti.modules.profile.ProfileScreen
