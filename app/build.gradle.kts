@@ -1,3 +1,5 @@
+import com.rodrigolmti.modules.android.AppBuildType
+
 plugins {
     id("rodrigolmti.android.application")
     alias(libs.plugins.android.application)
@@ -14,12 +16,22 @@ android {
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+        debug {
+            applicationIdSuffix = AppBuildType.DEBUG.applicationIdSuffix
+        }
+        val release by getting {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            applicationIdSuffix = AppBuildType.RELEASE.applicationIdSuffix
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("debug")
+        }
+        create("benchmark") {
+            initWith(release)
+            matchingFallbacks.add("release")
+            proguardFiles("benchmark-rules.pro")
+            isMinifyEnabled = true
+            applicationIdSuffix = AppBuildType.BENCHMARK.applicationIdSuffix
         }
     }
 
