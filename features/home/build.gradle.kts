@@ -2,6 +2,7 @@
 plugins {
     id("rodrigolmti.android.feature")
     id("rodrigolmti.android.compose")
+    id("kotlinx-serialization")
 }
 
 android {
@@ -19,5 +20,9 @@ android {
 }
 
 dependencies {
+    implementation(libs.kotlinx.serialization.json)
 
+    implementation(libs.koin.core)
+    implementation(libs.koin.compose)
+    implementation(libs.koin.android)
 }

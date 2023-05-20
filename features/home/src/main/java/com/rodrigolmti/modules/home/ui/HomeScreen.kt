@@ -16,13 +16,36 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.rodrigolmti.modules.home.domain.use_cases.GetDrinksUseCase
 import com.rodrigolmti.modules.navigation.BottomNavItem
 import com.rodrigolmti.modules.ui_kit.Blue40
+import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
+
+class HomeViewModel(
+    private val getDrinksUseCase: GetDrinksUseCase
+) : ViewModel() {
+
+    init {
+        viewModelScope.launch {
+
+            getDrinksUseCase().fold({
+
+            },{
+
+            })
+        }
+    }
+}
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    viewModel: HomeViewModel = koinViewModel<HomeViewModel>()
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()

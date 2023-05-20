@@ -4,6 +4,7 @@ plugins {
     id("rodrigolmti.android.application")
     alias(libs.plugins.android.application)
     alias(libs.plugins.androidx.baselineprofile)
+    id("kotlinx-serialization")
 }
 
 android {
@@ -54,8 +55,18 @@ dependencies {
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
+    debugImplementation(libs.bundles.compose.debug)
+
+    implementation(libs.okhttp.logging)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.kotlin.serialization)
+    implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.coil.kt)
+
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+
     implementation(libs.profileinstaller)
     "baselineProfile"(project(mapOf("path" to ":baselineprofile")))
-
-    debugImplementation(libs.bundles.compose.debug)
 }
