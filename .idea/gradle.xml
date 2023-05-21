@@ -30,6 +30,8 @@
             <option value="$PROJECT_DIR$/core/network" />
             <option value="$PROJECT_DIR$/core/ui-kit" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/drink" />
+            <option value="$PROJECT_DIR$/features/drink/detail" />
             <option value="$PROJECT_DIR$/features/home" />
           </set>
         </option>

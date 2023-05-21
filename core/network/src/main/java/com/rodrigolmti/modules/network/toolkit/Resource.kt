@@ -31,4 +31,12 @@ sealed class Resource<out D, out E> {
         is Success -> Success(value)
         is Error -> Error(transform(value))
     }
+
+    inline fun <T, F> flatMap(
+        transformSuccess: (D) -> Resource<T, F>,
+        transformError: (E) -> Resource<T, F>
+    ): Resource<T, F> = when (this) {
+        is Success -> transformSuccess(value)
+        is Error -> transformError(value)
+    }
 }

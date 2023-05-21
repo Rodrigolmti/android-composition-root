@@ -25,6 +25,9 @@ retrofit = "2.9.0"
 coil = "2.3.0"
 okhttp = "4.10.0"
 kretrofit-serialization = "1.0.0"
+junit-junit = "4.13.2"
+appcompat = "1.6.1"
+material = "1.8.0"
 
 [libraries]
 androidx-core = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core" }
@@ -67,6 +70,9 @@ koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", versi
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "kretrofit-serialization" }
+junit-junit = { group = "junit", name = "junit", version.ref = "junit-junit" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [bundles]
 compose = [

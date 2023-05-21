@@ -2,7 +2,7 @@ package com.rodrigolmti.modules.features.home.data.network
 
 import com.rodrigolmti.modules.features.home.data.mapper.toModel
 import com.rodrigolmti.modules.features.home.data.response.BodyShortDrinkResponse
-import com.rodrigolmti.modules.home.data.network.IHomeNetworkProvider
+import com.rodrigolmti.modules.home.data.provider.IHomeNetworkProvider
 import com.rodrigolmti.modules.home.domain.model.ShortDrink
 import retrofit2.http.GET
 

@@ -10,7 +10,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.rodrigolmti.drink.detail.ui.DrinkDetailScreen
 import com.rodrigolmti.modules.home.ui.home.HomeScreen
+import com.rodrigolmti.modules.home.ui.home.IHomeDelegate
 import com.rodrigolmti.modules.ui_kit.AppTheme
 
 class MainActivity : ComponentActivity() {
@@ -39,7 +41,18 @@ class MainActivity : ComponentActivity() {
 fun NavigationGraph(navController: NavHostController) {
     NavHost(navController, startDestination = "/home") {
         composable("/home") {
-            HomeScreen()
+            HomeScreen(delegate = HomeDelegate(navController))
+        }
+        composable("/drink-detail/{id}") {
+            DrinkDetailScreen(
+                drinkId = it.arguments?.getString("id") ?: "",
+                onBack = { navController.popBackStack() }
+            )
         }
     }
+}
+
+class HomeDelegate(private val navController: NavHostController) : IHomeDelegate {
+
+    override fun onDrinkSelected(id: String) = navController.navigate("/drink-detail/$id")
 }

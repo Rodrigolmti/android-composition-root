@@ -1,4 +1,4 @@
-package com.rodrigolmti.modules.home.domain.use_cases
+package com.rodrigolmti.modules.home.domain.use_case
 
 import com.rodrigolmti.modules.home.domain.model.DrinksError
 import com.rodrigolmti.modules.home.domain.model.ShortDrink

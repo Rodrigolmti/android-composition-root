@@ -1,4 +1,4 @@
-package com.rodrigolmti.modules.home.data.network
+package com.rodrigolmti.modules.home.data.provider
 
 import com.rodrigolmti.modules.home.domain.model.ShortDrink
 

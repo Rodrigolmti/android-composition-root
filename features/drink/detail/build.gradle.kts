@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.rodrigolmti.modules.home"
+    namespace = "com.rodrigolmti.modules.drink.detail"
 }
 
 dependencies {

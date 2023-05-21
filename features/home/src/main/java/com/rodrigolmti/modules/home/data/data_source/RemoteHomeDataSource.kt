@@ -1,6 +1,6 @@
 package com.rodrigolmti.modules.home.data.data_source
 
-import com.rodrigolmti.modules.home.data.network.IHomeNetworkProvider
+import com.rodrigolmti.modules.home.data.provider.IHomeNetworkProvider
 import com.rodrigolmti.modules.home.domain.model.DrinksError
 import com.rodrigolmti.modules.home.domain.model.ShortDrink
 import com.rodrigolmti.modules.network.toolkit.Resource

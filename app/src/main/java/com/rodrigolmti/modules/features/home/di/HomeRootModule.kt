@@ -2,7 +2,7 @@ package com.rodrigolmti.modules.features.home.di
 
 import com.rodrigolmti.modules.features.home.data.network.HomeNetworkProvider
 import com.rodrigolmti.modules.features.home.data.network.IHomeRetrofit
-import com.rodrigolmti.modules.home.data.network.IHomeNetworkProvider
+import com.rodrigolmti.modules.home.data.provider.IHomeNetworkProvider
 import com.rodrigolmti.modules.home.di.homeModule
 import org.koin.dsl.module
 import retrofit2.Retrofit

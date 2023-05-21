@@ -1,5 +1,6 @@
 package com.rodrigolmti.modules.home.ui.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -30,9 +31,14 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import org.koin.androidx.compose.koinViewModel
 
+interface IHomeDelegate {
+    fun onDrinkSelected(id: String)
+}
+
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel = koinViewModel<HomeViewModel>()
+    viewModel: HomeViewModel = koinViewModel<HomeViewModel>(),
+    delegate: IHomeDelegate,
 ) {
     val viewState by viewModel.viewState.collectAsState()
 
@@ -61,7 +67,9 @@ fun HomeScreen(
 
                     val item = state.drinks[index]
 
-                    BuildDrinkItem(item.strDrinkThumb, item.strDrink)
+                    BuildDrinkItem(item.strDrinkThumb, item.strDrink) {
+                        delegate.onDrinkSelected(item.idDrink)
+                    }
                 }
             }
         }
@@ -71,11 +79,13 @@ fun HomeScreen(
 @Composable
 fun BuildDrinkItem(
     thumb: String,
-    name: String
+    name: String,
+    onItemClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable { onItemClick() }
             .padding(horizontal = 16.dp),
         shape = RoundedCornerShape(16.dp),
     ) {
@@ -112,6 +122,7 @@ fun BuildDrinkItem(
 fun PreviewDrinkItem() {
     BuildDrinkItem(
         thumb = "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
-        name = "Mojito"
+        name = "Mojito",
+        onItemClick = {}
     )
 }

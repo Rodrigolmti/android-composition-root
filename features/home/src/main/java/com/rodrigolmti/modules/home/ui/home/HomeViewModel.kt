@@ -2,7 +2,7 @@ package com.rodrigolmti.modules.home.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rodrigolmti.modules.home.domain.use_cases.GetDrinksUseCase
+import com.rodrigolmti.modules.home.domain.use_case.GetDrinksUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
