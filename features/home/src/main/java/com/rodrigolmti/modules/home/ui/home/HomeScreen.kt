@@ -12,8 +12,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.rodrigolmti.modules.ui_kit.CustomLoading
 import org.koin.androidx.compose.koinViewModel
 
 interface IHomeDelegate {
@@ -43,35 +44,64 @@ fun HomeScreen(
     val viewState by viewModel.viewState.collectAsState()
 
     when (viewState) {
-        HomeViewState.Error -> TODO()
-        HomeViewState.Loading -> CircularProgressIndicator(
+        HomeViewState.Error -> BuildError(viewModel)
+        HomeViewState.Loading -> CustomLoading()
+        is HomeViewState.Success -> BuildContent(viewState, delegate)
+    }
+}
+
+@Composable
+private fun BuildContent(
+    viewState: HomeViewState,
+    delegate: IHomeDelegate
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .wrapContentSize(Alignment.Center)
+    ) {
+
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(vertical = 24.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            val state = viewState as HomeViewState.Success
+
+            items(state.drinks.size) { index ->
+
+                val item = state.drinks[index]
+
+                BuildDrinkItem(item.strDrinkThumb, item.strDrink) {
+                    delegate.onDrinkSelected(item.idDrink)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun BuildError(viewModel: HomeViewModel) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .wrapContentSize(Alignment.Center)
+            .padding(horizontal = 16.dp)
+    ) {
+        Text(
+            text = "Something went wrong",
+            fontSize = 16.sp,
+            textAlign = TextAlign.Center,
             modifier = Modifier
-                .fillMaxSize()
                 .wrapContentSize(Alignment.Center)
         )
 
-        is HomeViewState.Success -> Column(
+        Button(
+            onClick = { viewModel.getDrinks() },
             modifier = Modifier
-                .fillMaxSize()
                 .wrapContentSize(Alignment.Center)
         ) {
-
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(vertical = 24.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                val state = viewState as HomeViewState.Success
-
-                items(state.drinks.size) { index ->
-
-                    val item = state.drinks[index]
-
-                    BuildDrinkItem(item.strDrinkThumb, item.strDrink) {
-                        delegate.onDrinkSelected(item.idDrink)
-                    }
-                }
-            }
+            Text(text = "Retry")
         }
     }
 }

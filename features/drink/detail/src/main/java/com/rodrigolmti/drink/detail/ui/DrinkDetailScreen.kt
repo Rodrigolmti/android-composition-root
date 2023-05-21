@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
@@ -22,9 +22,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.rodrigolmti.modules.ui_kit.CustomLoading
 import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -54,20 +57,21 @@ fun DrinkDetailScreen(
                 })
         }
     ) {
-        DrinkDetailContent(viewState = viewState)
+        DrinkDetailContent(viewState = viewState) {
+            viewModel.getDrinkById(drinkId)
+        }
     }
 }
 
 @Composable
-fun DrinkDetailContent(viewState: DrinkDetailState) {
+fun DrinkDetailContent(
+    viewState: DrinkDetailState,
+    onRetry: () -> Unit = {},
+) {
     when (viewState) {
-        DrinkDetailState.Loading -> CircularProgressIndicator(
-            modifier = Modifier
-                .fillMaxSize()
-                .wrapContentSize(Alignment.Center)
-        )
+        DrinkDetailState.Loading -> CustomLoading()
 
-        DrinkDetailState.Error -> TODO()
+        DrinkDetailState.Error -> BuildError(onRetry)
         is DrinkDetailState.Success -> Column(modifier = Modifier.fillMaxSize()) {
 
             val item = viewState.data
@@ -118,6 +122,32 @@ fun DrinkDetailContent(viewState: DrinkDetailState) {
                     .fillMaxWidth()
                     .padding(16.dp)
             )
+        }
+    }
+}
+
+@Composable
+private fun BuildError(onRetry: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .wrapContentSize(Alignment.Center)
+            .padding(horizontal = 16.dp)
+    ) {
+        Text(
+            text = "Something went wrong",
+            fontSize = 16.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .wrapContentSize(Alignment.Center)
+        )
+
+        Button(
+            onClick = onRetry,
+            modifier = Modifier
+                .wrapContentSize(Alignment.Center)
+        ) {
+            Text(text = "Retry")
         }
     }
 }

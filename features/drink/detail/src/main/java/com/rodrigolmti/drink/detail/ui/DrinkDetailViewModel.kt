@@ -16,6 +16,8 @@ class DrinkDetailViewModel(
 
     fun getDrinkById(id: String) {
         viewModelScope.launch {
+            _viewState.tryEmit(DrinkDetailState.Loading)
+
             getDrinkByIdUseCase(id).fold({
                 _viewState.tryEmit(DrinkDetailState.Success(it))
             }, {

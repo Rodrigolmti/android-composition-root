@@ -15,7 +15,13 @@ class HomeViewModel(
     val viewState: StateFlow<HomeViewState> = _viewState
 
     init {
+        getDrinks()
+    }
+
+    fun getDrinks() {
         viewModelScope.launch {
+            _viewState.tryEmit(HomeViewState.Loading)
+
             getDrinksUseCase().fold({
                 _viewState.tryEmit(HomeViewState.Success(it))
             }, {
