@@ -9,6 +9,8 @@ import com.rodrigolmti.modules.network.UnsafeOkHttpClient
 import okhttp3.Call
 import org.koin.android.BuildConfig
 import org.koin.android.ext.android.get
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
 
 class MainApplication : Application(), ImageLoaderFactory {
@@ -17,6 +19,10 @@ class MainApplication : Application(), ImageLoaderFactory {
         super.onCreate()
 
         startKoin {
+            androidLogger()
+
+            androidContext(this@MainApplication)
+
             modules(applicationModule)
         }
     }

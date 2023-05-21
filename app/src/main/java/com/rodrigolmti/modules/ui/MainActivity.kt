@@ -4,16 +4,22 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.rodrigolmti.drink.detail.ui.DrinkDetailScreen
-import com.rodrigolmti.modules.home.ui.home.HomeScreen
-import com.rodrigolmti.modules.features.home.navigator.HomeNavigator
+import com.rodrigolmti.drink.detail.entry.IDrinkDetailFeatureEntry
+import com.rodrigolmti.modules.home.entry.IHomeFeatureEntry
+import com.rodrigolmti.modules.navigation.FeatureEntry
 import com.rodrigolmti.modules.ui_kit.AppTheme
+import com.rodrigolmti.modules.ui_kit.DarkGreenGray10
+import com.rodrigolmti.modules.ui_kit.NavigationBar
+import com.rodrigolmti.modules.ui_kit.StatusBar
+import org.koin.java.KoinJavaComponent.getKoin
 
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -22,14 +28,13 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             AppTheme {
+                StatusBar(window, color = MaterialTheme.colors.background)
 
-                val navController = rememberNavController()
-
-                Scaffold {
-                    NavigationGraph(
-                        navController = navController,
-                    )
+                Surface(color = MaterialTheme.colors.background) {
+                    NavigationGraph()
                 }
+
+                NavigationBar(window, color = DarkGreenGray10)
             }
         }
 
@@ -38,16 +43,18 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun NavigationGraph(navController: NavHostController) {
-    NavHost(navController, startDestination = "/home") {
-        composable("/home") {
-            HomeScreen(delegate = HomeNavigator(navController))
+fun NavigationGraph() {
+    val navController = rememberNavController()
+
+    val homeEntry = getKoin().get<IHomeFeatureEntry>()
+    val drinkDetailEntry = getKoin().get<IDrinkDetailFeatureEntry>()
+
+    NavHost(navController, startDestination = homeEntry.featureRoute) {
+        with(homeEntry) {
+            composable(navController)
         }
-        composable("/drink-detail/{id}") {
-            DrinkDetailScreen(
-                drinkId = it.arguments?.getString("id") ?: "",
-                onBack = { navController.popBackStack() }
-            )
+        with(drinkDetailEntry) {
+            navigation(navController)
         }
     }
 }

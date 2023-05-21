@@ -16,6 +16,7 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -34,10 +35,10 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun DrinkDetailScreen(
     viewModel: DrinkDetailViewModel = koinViewModel<DrinkDetailViewModel>(),
-    onBack: () -> Unit = {},
     drinkId: String,
+    onBack: () -> Unit = {},
 ) {
-    viewModel.getDrinkById(drinkId)
+    FetchDrinkDetail(viewModel, drinkId)
 
     val viewState by viewModel.viewState.collectAsState()
 
@@ -61,6 +62,14 @@ fun DrinkDetailScreen(
             viewModel.getDrinkById(drinkId)
         }
     }
+}
+
+@Composable
+private fun FetchDrinkDetail(
+    viewModel: DrinkDetailViewModel,
+    drinkId: String
+) {
+    LaunchedEffect(Unit) { viewModel.getDrinkById(drinkId) }
 }
 
 @Composable

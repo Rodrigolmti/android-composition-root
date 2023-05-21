@@ -115,7 +115,9 @@ fun BuildDrinkItem(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onItemClick() }
+            .clickable {
+                onItemClick()
+            }
             .padding(horizontal = 16.dp),
         shape = RoundedCornerShape(16.dp),
     ) {

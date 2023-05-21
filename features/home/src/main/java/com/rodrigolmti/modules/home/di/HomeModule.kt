@@ -1,5 +1,7 @@
 package com.rodrigolmti.modules.home.di
 
+import com.rodrigolmti.modules.home.entry.HomeFeatureEntry
+import com.rodrigolmti.modules.home.entry.IHomeFeatureEntry
 import com.rodrigolmti.modules.home.data.data_source.IRemoteHomeDataSource
 import com.rodrigolmti.modules.home.data.data_source.RemoteHomeDataSource
 import com.rodrigolmti.modules.home.domain.use_case.GetDrinksUseCase
@@ -12,5 +14,6 @@ val homeModule = module {
     factory {
         GetDrinksUseCase(get<IRemoteHomeDataSource>()::getDrinks)
     }
+    factory<IHomeFeatureEntry>{ HomeFeatureEntry() }
     viewModel { HomeViewModel(get()) }
 }
