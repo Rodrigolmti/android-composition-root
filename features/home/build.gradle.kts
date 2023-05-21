@@ -20,6 +20,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:network"))
+
     implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.koin.core)

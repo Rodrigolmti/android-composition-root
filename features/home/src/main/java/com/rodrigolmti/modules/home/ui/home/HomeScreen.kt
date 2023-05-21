@@ -100,7 +100,7 @@ fun BuildDrinkItem(
             Text(
                 text = name,
                 color = Color.White,
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Left,
                 fontSize = 16.sp
             )
         }

@@ -1,4 +1,4 @@
-package com.rodrigolmti.modules
+package com.rodrigolmti.modules.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle

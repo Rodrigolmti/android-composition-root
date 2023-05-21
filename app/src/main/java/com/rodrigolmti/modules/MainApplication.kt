@@ -5,7 +5,7 @@ import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.util.DebugLogger
 import com.rodrigolmti.modules.di.applicationModule
-import com.rodrigolmti.modules.di.getUnsafeOkHttpClient
+import com.rodrigolmti.modules.network.UnsafeOkHttpClient
 import okhttp3.Call
 import org.koin.android.BuildConfig
 import org.koin.android.ext.android.get
@@ -25,7 +25,7 @@ class MainApplication : Application(), ImageLoaderFactory {
         .callFactory(get<Call.Factory>())
         .respectCacheHeaders(false)
         .okHttpClient {
-            getUnsafeOkHttpClient()
+            UnsafeOkHttpClient.unsafeOkHttpClient
         }
         .apply {
             if (BuildConfig.DEBUG) {

@@ -6,16 +6,6 @@ plugins {
 
 android {
     namespace = "com.rodrigolmti.modules.ui_kit"
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
 }
 
 dependencies {

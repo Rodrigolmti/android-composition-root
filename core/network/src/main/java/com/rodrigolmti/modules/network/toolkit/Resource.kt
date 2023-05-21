@@ -1,4 +1,4 @@
-package com.rodrigolmti.modules.home.core
+package com.rodrigolmti.modules.network.toolkit
 
 sealed class Resource<out D, out E> {
     data class Success<D>(val value: D) : Resource<D, Nothing>()
@@ -20,5 +20,15 @@ sealed class Resource<out D, out E> {
             onFinish(null)
             null
         }
+    }
+
+    inline fun <T> mapSuccess(transform: (D) -> T): Resource<T, E> = when (this) {
+        is Success -> Success(transform(value))
+        is Error -> Error(value)
+    }
+
+    inline fun <T> mapError(transform: (E) -> T): Resource<D, T> = when (this) {
+        is Success -> Success(value)
+        is Error -> Error(transform(value))
     }
 }

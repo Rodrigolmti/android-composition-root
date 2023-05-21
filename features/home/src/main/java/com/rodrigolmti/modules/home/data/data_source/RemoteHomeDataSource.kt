@@ -1,24 +1,23 @@
 package com.rodrigolmti.modules.home.data.data_source
 
-import com.rodrigolmti.modules.home.core.Resource
 import com.rodrigolmti.modules.home.data.mapper.toModel
 import com.rodrigolmti.modules.home.data.network.IHomeNetworkProvider
+import com.rodrigolmti.modules.home.domain.model.DrinksError
 import com.rodrigolmti.modules.home.domain.model.ShortDrink
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.rodrigolmti.modules.network.toolkit.Resource
+import com.rodrigolmti.modules.network.toolkit.execute
 
 interface IRemoteHomeDataSource {
-    suspend fun getDrinks(): Resource<List<ShortDrink>, Unit>
+    suspend fun getDrinks(): Resource<List<ShortDrink>, DrinksError>
 }
 
 class RemoteHomeDataSource(private val network: IHomeNetworkProvider) : IRemoteHomeDataSource {
 
-    override suspend fun getDrinks(): Resource<List<ShortDrink>, Unit> = withContext(Dispatchers.IO) {
-        try {
-            val drinks = network.getDrinks().drinks.map { it.toModel() }
-            Resource.Success(drinks)
-        } catch (e: Exception) {
-            Resource.Error(Unit)
-        }
+    override suspend fun getDrinks(): Resource<List<ShortDrink>, DrinksError> = execute {
+        network.getDrinks()
+    }.mapSuccess { response ->
+        response.drinks.map { it.toModel() }
+    }.mapError {
+        DrinksError.NetworkError
     }
 }
