@@ -19,8 +19,6 @@ rootProject.name = "Modules"
 
 include(":app")
 include(":features:home")
-include(":features:orders")
-include(":features:profile")
 include(":core:ui-kit")
 include(":core:navigation")
 include(":baselineprofile")

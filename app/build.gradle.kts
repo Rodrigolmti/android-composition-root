@@ -51,8 +51,6 @@ dependencies {
     implementation(project(":core:network"))
 
     implementation(project(":features:home"))
-    implementation(project(":features:orders"))
-    implementation(project(":features:profile"))
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)

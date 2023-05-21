@@ -1,7 +1,9 @@
 package com.rodrigolmti.modules.navigation
 
-interface BottomNavItem {
-    val screenRoute: String
-    val icon: Int
-    val title: String
+import androidx.compose.runtime.Composable
+
+
+interface NavigationRoute {
+    val routes: Map<String, @Composable Function<*>>
 }
+
