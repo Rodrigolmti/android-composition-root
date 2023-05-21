@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class BodyDetailDrinkResponse(
-    val drinks: List<ShortDrinkResponse> = emptyList()
+    val drinks: List<DrinkDetailResponse> = emptyList()
 )
 
 @Serializable

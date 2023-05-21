@@ -1,4 +1,4 @@
-package com.rodrigolmti.modules.home.data.response
+package com.rodrigolmti.modules.features.home.data.response
 
 import kotlinx.serialization.Serializable
 

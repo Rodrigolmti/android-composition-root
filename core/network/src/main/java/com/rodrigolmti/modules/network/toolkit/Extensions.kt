@@ -16,7 +16,6 @@ sealed class ResultError(val message: String?) {
         val exceptionTitle: String? = null,
         val exceptionMessage: String? = null,
         val isConnectionError: Boolean = false,
-        val expectedAction: String? = null,
     ) : ResultError(httpMessage)
 }
 

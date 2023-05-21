@@ -1,8 +1,8 @@
 package com.rodrigolmti.modules.home.data.network
 
-import com.rodrigolmti.modules.home.data.response.BodyShortDrinkResponse
+import com.rodrigolmti.modules.home.domain.model.ShortDrink
 
 interface IHomeNetworkProvider {
 
-    suspend fun getDrinks(): BodyShortDrinkResponse
+    suspend fun getDrinks(): List<ShortDrink>
 }
