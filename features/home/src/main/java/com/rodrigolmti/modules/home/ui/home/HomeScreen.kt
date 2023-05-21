@@ -1,12 +1,13 @@
 package com.rodrigolmti.modules.home.ui.home
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -48,8 +49,11 @@ fun HomeScreen(
                 .fillMaxSize()
                 .wrapContentSize(Alignment.Center)
         ) {
+
             LazyColumn(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = PaddingValues(vertical = 24.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 val state = viewState as HomeViewState.Success
 
@@ -72,9 +76,8 @@ fun BuildDrinkItem(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(horizontal = 16.dp),
         shape = RoundedCornerShape(16.dp),
-        backgroundColor = Color.Black
     ) {
         Row(
             modifier = Modifier
@@ -89,6 +92,9 @@ fun BuildDrinkItem(
                     .build(),
                 contentScale = ContentScale.Crop,
                 contentDescription = null,
+                modifier = Modifier
+                    .size(85.dp)
+                    .padding(end = 16.dp)
             )
 
             Text(

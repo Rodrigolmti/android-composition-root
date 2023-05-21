@@ -1,5 +1,6 @@
 package com.rodrigolmti.modules.di
 
+import android.app.Application
 import android.content.Context
 import coil.ImageLoader
 import coil.util.DebugLogger
@@ -58,10 +59,13 @@ private fun okHttpCallFactory(): Call.Factory = OkHttpClient.Builder()
 
 private fun imageLoader(
     okHttpCallFactory: Call.Factory,
-    application: Context,
+    application: Application,
 ): ImageLoader = ImageLoader.Builder(application)
     .callFactory(okHttpCallFactory)
     .respectCacheHeaders(false)
+    .okHttpClient {
+        getUnsafeOkHttpClient()
+    }
     .apply {
         if (BuildConfig.DEBUG) {
             logger(DebugLogger())
@@ -69,7 +73,7 @@ private fun imageLoader(
     }
     .build()
 
-private fun getUnsafeOkHttpClient(): OkHttpClient {
+ fun getUnsafeOkHttpClient(): OkHttpClient {
     return try {
         // Create a trust manager that does not validate certificate chains
         val trustAllCerts = arrayOf<TrustManager>(
