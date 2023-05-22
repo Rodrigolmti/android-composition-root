@@ -2,10 +2,9 @@ package com.rodrigolmti.drink.detail.entry
 
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
-import com.rodrigolmti.modules.navigation.AggregateFeatureEntry
-import com.rodrigolmti.modules.navigation.ComposableFeatureEntry
+import com.rodrigolmti.modules.navigation.ComposableFeatureRouter
 
-abstract class IDrinkDetailFeatureEntry : AggregateFeatureEntry {
+abstract class IDrinkDetailFeatureRouter : ComposableFeatureRouter {
 
     final override val featureRoute = "/drink-detail/{$ARG_DRINK_ID}"
 

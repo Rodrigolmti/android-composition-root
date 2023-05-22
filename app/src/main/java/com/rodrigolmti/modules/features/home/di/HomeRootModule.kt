@@ -1,7 +1,7 @@
 package com.rodrigolmti.modules.features.home.di
 
 import androidx.navigation.NavHostController
-import com.rodrigolmti.drink.detail.entry.IDrinkDetailFeatureEntry
+import com.rodrigolmti.drink.detail.entry.IDrinkDetailFeatureRouter
 import com.rodrigolmti.modules.features.home.data.network.HomeNetworkProvider
 import com.rodrigolmti.modules.features.home.data.network.IHomeRetrofit
 import com.rodrigolmti.modules.features.home.navigator.HomeNavigator
@@ -16,7 +16,7 @@ internal val homeRootModule = module {
         HomeNetworkProvider(get<Retrofit>().create(IHomeRetrofit::class.java))
     }
     factory<IHomeDelegate> { (navController: NavHostController) ->
-        HomeNavigator(navController, get<IDrinkDetailFeatureEntry>())
+        HomeNavigator(navController, get<IDrinkDetailFeatureRouter>())
     }
     includes(homeModule)
 }

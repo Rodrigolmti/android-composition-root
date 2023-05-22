@@ -8,7 +8,7 @@ import com.rodrigolmti.modules.home.ui.home.IHomeDelegate
 import org.koin.compose.koinInject
 import org.koin.core.parameter.parametersOf
 
-class HomeFeatureEntry : IHomeFeatureEntry() {
+class HomeFeatureRouter : IHomeFeatureRouter() {
 
     @Composable
     override fun Composable(

@@ -38,9 +38,9 @@ fun DrinkDetailScreen(
     drinkId: String,
     onBack: () -> Unit = {},
 ) {
-    FetchDrinkDetail(viewModel, drinkId)
-
     val viewState by viewModel.viewState.collectAsState()
+
+    LaunchedEffect(Unit) { viewModel.getDrinkById(drinkId) }
 
     Scaffold(
         topBar = {
@@ -65,21 +65,12 @@ fun DrinkDetailScreen(
 }
 
 @Composable
-private fun FetchDrinkDetail(
-    viewModel: DrinkDetailViewModel,
-    drinkId: String
-) {
-    LaunchedEffect(Unit) { viewModel.getDrinkById(drinkId) }
-}
-
-@Composable
 fun DrinkDetailContent(
     viewState: DrinkDetailState,
     onRetry: () -> Unit = {},
 ) {
     when (viewState) {
         DrinkDetailState.Loading -> CustomLoading()
-
         DrinkDetailState.Error -> BuildError(onRetry)
         is DrinkDetailState.Success -> Column(modifier = Modifier.fillMaxSize()) {
 

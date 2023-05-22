@@ -3,7 +3,7 @@ package com.rodrigolmti.modules.navigation
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavDeepLink
 
-interface FeatureEntry {
+interface FeatureRouter {
 
     val featureRoute: String
 
